@@ -7,6 +7,11 @@
 .flutter-plugins-dependencies
 .flutter-versions
 .flutter/
+/build/
+*.flutter-plugins
+*.flutter-plugins-dependencies
+.pub/
+.dart_tool/
 
 # Web related
 web/.dart_tool/
