@@ -1,5 +1,6 @@
 import 'package:either_dart/either.dart';
 import 'package:flutter_movies/core/data/models/movie_params_model.dart';
+import 'package:flutter_movies/core/domain/entities/movie_params.dart';
 import 'package:flutter_movies/core/error/failures.dart';
 import 'package:flutter_movies/core/data/datasources/movie_remote_datasource.dart';
 import 'package:flutter_movies/core/domain/entities/movie.dart';
@@ -11,9 +12,19 @@ class MovieRepositoryImpl implements MovieRepository {
   MovieRepositoryImpl({required this.remoteDataSource});
 
   @override
-  Future<Either<Failure, List<Movie>>> getMovies(MovieParamsModel params) async {
+  Future<Either<Failure, List<Movie>>> getMovies(MovieParams params) async {
     try {
-      final remoteMovies = await remoteDataSource.getMovies(params);
+      final queryParams = MovieParamsModel(
+        includeAdult: params.includeAdult, 
+        includeVideo: params.includeVideo, 
+        language: params.language, 
+        page: params.page, 
+        sortBy: params.sortBy,
+        withReleaseType: params.withReleaseType,
+        releaseDateGte: params.releaseDateGte,
+        releaseDateLte: params.releaseDateLte
+      )
+      final remoteMovies = await remoteDataSource.getMovies(queryParams);
       return remoteMovies.fold(
         (failure) => Left(failure), 
         (movieReponse) => Right(movieReponse.toDomain()));
