@@ -1,6 +1,6 @@
 import 'package:flutter_movies/core/error/failures.dart';
 import 'package:http/http.dart' as http;
-import 'dart:io'; // Para SocketException
+import 'dart:io';
 
 class ApiClient {
   final String baseUrl;
@@ -33,7 +33,6 @@ class ApiClient {
           throw const UnknownErrorFailure(message: "An unknown error occurred");
       }
     } on SocketException {
-      // Manejo de errores de conexión
       throw const ConnectionFailure();
     } catch (e) {
       throw UnknownErrorFailure(message: e.toString());

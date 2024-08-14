@@ -1,5 +1,5 @@
-import 'package:flutter_movies/features/movie_popular/data/models/movie_model.dart';
-import 'package:flutter_movies/features/movie_popular/domain/entities/movie.dart';
+import 'package:flutter_movies/core/data/models/movie_model.dart';
+import 'package:flutter_movies/core/domain/entities/movie.dart';
 
 class MovieResponseModel {
   final int page;
