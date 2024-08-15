@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_movies/core/di/injection.dart';
@@ -13,7 +11,11 @@ import 'package:logger/web.dart';
 final logger = Logger();
 
 void main() async {
-  await dotenv.load(fileName: ".env");
+  try {
+    await dotenv.load(fileName: ".env");
+  } catch (e) {
+    logger.e(e);
+  }
   setup();
   setupPopularMoviesInjection();
   runApp(const MainApp());
