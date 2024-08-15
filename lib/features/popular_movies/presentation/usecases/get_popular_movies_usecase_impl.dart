@@ -6,15 +6,15 @@ import 'package:flutter_movies/core/error/failures.dart';
 import 'package:flutter_movies/features/popular_movies/domain/entities/popular_movie_params.dart';
 import 'package:flutter_movies/features/popular_movies/domain/usecases/get_popular_movies_usecase.dart';
 
-class GetPopularMoviesUsecaseImpl implements GetPopularMoviesUsecase {
+class GetPopularMoviesUseCaseImpl implements GetPopularMoviesUseCase {
   final MovieRepository repository;
 
-  GetPopularMoviesUsecaseImpl({
+  GetPopularMoviesUseCaseImpl({
     required this.repository
   });
 
   @override
-  Future<Either<Failure, List<Movie>>> getMovies(PopularMovieParams params) {
+  Future<Either<Failure, List<Movie>>> call(PopularMovieParams params) {
     final movieParams = MovieParams(
       sortBy: params.sortBy.value,
       language: params.language.value,

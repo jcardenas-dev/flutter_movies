@@ -23,11 +23,13 @@ class MovieRepositoryImpl implements MovieRepository {
         withReleaseType: params.withReleaseType,
         releaseDateGte: params.releaseDateGte,
         releaseDateLte: params.releaseDateLte
-      )
+      );
       final remoteMovies = await remoteDataSource.getMovies(queryParams);
       return remoteMovies.fold(
         (failure) => Left(failure), 
         (movieReponse) => Right(movieReponse.toDomain()));
+    } on MovieFailure catch(e){
+      return Left(e);
     } catch (e) {
       return Left(UnknownErrorFailure(message: e.toString()));
     }

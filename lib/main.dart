@@ -1,10 +1,21 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_movies/core/di/injection.dart';
 import 'package:flutter_movies/features/home/pages/home_page.dart';
 import 'package:flutter_movies/features/now_playing/pages/now_playing_page.dart';
-import 'package:flutter_movies/features/popular_movies/pages/popular_movies_page.dart';
+import 'package:flutter_movies/features/popular_movies/di/injection.dart';
+import 'package:flutter_movies/features/popular_movies/presentation/pages/popular_movies_page.dart';
 import 'package:flutter_movies/features/settings/pages/settings_page.dart';
+import 'package:logger/web.dart';
 
-void main() {
+final logger = Logger();
+
+void main() async {
+  await dotenv.load(fileName: ".env");
+  setup();
+  setupPopularMoviesInjection();
   runApp(const MainApp());
 }
 
@@ -38,7 +49,7 @@ class _MainPageState extends State<MainPage> {
 
   final List<Widget> _pages = [
     HomePage(),
-    PopularMoviesPage(),
+    const PopularMoviesPage(),
     NowPlayingPage(),
     SettingsPage(),
   ];

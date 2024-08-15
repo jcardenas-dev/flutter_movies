@@ -65,3 +65,6 @@ linux/ephemeral/
 # Misc
 *.log
 pubspec.lock
+
+#secrets
+*.env

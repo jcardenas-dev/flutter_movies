@@ -1,4 +1,5 @@
 import 'package:flutter_movies/core/error/failures.dart';
+import 'package:flutter_movies/main.dart';
 import 'package:http/http.dart' as http;
 import 'dart:io';
 
@@ -9,10 +10,16 @@ class ApiClient {
   ApiClient({required this.baseUrl, required this.apiKey});
 
   Future<http.Response> get(String endpoint) async {
-    final url = Uri.parse('$baseUrl$endpoint?api_key=$apiKey');
-    
+    final url = Uri.parse('$baseUrl$endpoint');
+    logger.i("url: $url");
     try {
-      final response = await http.get(url);
+      final headers = {
+        'Authorization': 'Bearer $apiKey',
+        'Accept': 'application/json',
+        // Agrega más encabezados si es necesario
+      };
+
+      final response = await http.get(url, headers: headers);
 
       // Manejo de errores comunes
       switch (response.statusCode) {
