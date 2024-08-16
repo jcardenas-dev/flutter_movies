@@ -13,5 +13,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Added use case for fetching popular movies.
 - Created enums for `MovieLanguage`, `MovieSort`, and `MovieWithReleaseType` to use as parameters sent to the repository.
 - Set up dependency injection for use cases and repositories.
+- Implemented BLoC and use case for now playing movies.
+- Updated API client to support fetching now playing movies.
+- Updated UI to display now playing movies.
 
 ### Changed
