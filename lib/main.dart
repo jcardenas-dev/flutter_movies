@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_movies/core/di/injection.dart';
 import 'package:flutter_movies/features/home/pages/home_page.dart';
-import 'package:flutter_movies/features/now_playing/pages/now_playing_page.dart';
+import 'package:flutter_movies/features/now_playing/di/injection.dart';
+import 'package:flutter_movies/features/now_playing/presentation/pages/now_playing_page.dart';
 import 'package:flutter_movies/features/popular_movies/di/injection.dart';
 import 'package:flutter_movies/features/popular_movies/presentation/pages/popular_movies_page.dart';
 import 'package:flutter_movies/features/settings/pages/settings_page.dart';
@@ -18,6 +19,7 @@ void main() async {
   }
   setup();
   setupPopularMoviesInjection();
+  setupNowPopularMoviesInjection();
   runApp(const MainApp());
 }
 

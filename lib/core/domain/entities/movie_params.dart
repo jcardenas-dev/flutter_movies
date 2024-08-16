@@ -4,7 +4,7 @@ class MovieParams {
   final String language;
   final int page;
   final String sortBy;
-  final int? withReleaseType;
+  final String? withReleaseType;
   final String? releaseDateGte;
   final String? releaseDateLte;
 

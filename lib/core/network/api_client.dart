@@ -9,8 +9,15 @@ class ApiClient {
 
   ApiClient({required this.baseUrl, required this.apiKey});
 
-  Future<http.Response> get(String endpoint) async {
-    final url = Uri.parse('$baseUrl$endpoint');
+  Future<http.Response> get(String endpoint, Map<String, String> params) async {
+    Uri uri = Uri.parse(baseUrl);
+    final url = Uri(
+      scheme: uri.scheme,
+      host: uri.host,
+      path: endpoint,
+      queryParameters: params,
+    );
+    logger.d("parameters: $params");
     logger.i("url: $url");
     try {
       final headers = {

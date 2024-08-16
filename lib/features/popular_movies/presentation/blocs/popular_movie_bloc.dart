@@ -26,20 +26,4 @@ class PopularMovieBloc extends Bloc<MovieEvent, MovieState> {
       );
     });
   }
-
-  Stream<MovieState> mapEventToState(MovieEvent event) async* {
-    if (event is LoadMovies) {
-      yield MovieLoading();
-      final params = PopularMovieParams(
-        sortBy: MovieSort.popularity,
-        language: MovieLanguage.enUS,
-        page: 1
-      );
-      final result = await getPopularMoviesUseCase(params);
-      yield result.fold(
-        (failure) => MovieError(message: failure.message),
-        (movies) => MovieLoaded(movies: movies),
-      );
-    }
-  }
 }
