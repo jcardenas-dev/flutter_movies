@@ -29,7 +29,7 @@ class MovieResponseModel {
       title: toElement.title, 
       overview: toElement.overview, 
       posterPath: 'https://image.tmdb.org/t/p/w500${toElement.posterPath}', 
-      backdropPath: toElement.backdropPath, 
+      backdropPath: toElement.backdropPath ?? '', 
       voteAverage: toElement.voteAverage, 
       releaseDate: toElement.releaseDate
       )

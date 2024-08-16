@@ -1,10 +1,12 @@
+import 'package:flutter_movies/main.dart';
+
 class MovieParamsModel {
   final bool includeAdult;
   final bool includeVideo;
   final String language;
   final int page;
   final String sortBy;
-  final int? withReleaseType;
+  final String? withReleaseType;
   final String? releaseDateGte;
   final String? releaseDateLte;
 
@@ -19,7 +21,7 @@ class MovieParamsModel {
     this.releaseDateLte,
   });
   
-  String buildQuery() {
+  Map<String, String> getParams() {
     final queryParameters = <String, String>{
       'include_adult': includeAdult.toString(),
       'include_video': includeVideo.toString(),
@@ -29,7 +31,7 @@ class MovieParamsModel {
     };
 
     if (withReleaseType != null) {
-      queryParameters['with_release_type'] = withReleaseType.toString();
+      queryParameters['with_release_type'] = withReleaseType!;
     }
 
     if (releaseDateGte != null) {
@@ -40,11 +42,7 @@ class MovieParamsModel {
       queryParameters['release_date.lte'] = releaseDateLte!;
     }
 
-    final queryString = queryParameters.entries
-        .map((e) => '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
-        .join('&');
-
-    return queryString;
+    return queryParameters;
   }
 
 }

@@ -3,17 +3,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_movies/core/blocs/events/movie_event.dart';
 import 'package:flutter_movies/core/blocs/states/movie_state.dart';
 import 'package:flutter_movies/core/widgets/movie_list_item.dart';
-import 'package:flutter_movies/features/popular_movies/presentation/blocs/popular_movie_bloc.dart';
+import 'package:flutter_movies/features/now_playing/presentation/blocs/now_playing_movies_bloc.dart';
 import 'package:get_it/get_it.dart';
 
-class PopularMoviesPage extends StatelessWidget {
-  const PopularMoviesPage({super.key});
 
+class NowPlayingPage extends StatelessWidget {
+  const NowPlayingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => GetIt.I<PopularMovieBloc>(),
+      create: (context) => GetIt.I<NowPlayingMoviesBloc>(),
       child: _PopularMoviesPageState(),
     );
   }
@@ -26,12 +26,12 @@ class _PopularMoviesPageState extends StatelessWidget {
   Widget build(BuildContext context) {
     // Disparar el evento LoadMovies cuando el widget se construya
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      BlocProvider.of<PopularMovieBloc>(context).add(LoadMovies());
+      BlocProvider.of<NowPlayingMoviesBloc>(context).add(LoadMovies());
     });
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Popular Movies')),
-      body: BlocBuilder<PopularMovieBloc, MovieState>(
+      appBar: AppBar(title: const Text('Now Playing Movies')),
+      body: BlocBuilder<NowPlayingMoviesBloc, MovieState>(
         builder: (context, state) {
           if (state is MovieLoading) {
             return const Center(child: CircularProgressIndicator());
@@ -52,3 +52,4 @@ class _PopularMoviesPageState extends StatelessWidget {
     );
   }
 }
+
