@@ -23,16 +23,7 @@ class MovieResponseModel {
     );
   }
 
-  List<Movie> toDomain() {
-    return results.map((toElement) => Movie(
-      id: toElement.id, 
-      title: toElement.title, 
-      overview: toElement.overview, 
-      posterPath: 'https://image.tmdb.org/t/p/w500${toElement.posterPath}', 
-      backdropPath: toElement.backdropPath ?? '', 
-      voteAverage: toElement.voteAverage, 
-      releaseDate: toElement.releaseDate
-      )
-    ).toList();
+  List<Movie> toDomain(List<int> favoriteIds) {
+    return results.map((toElement) => toElement.toDomain(favoriteIds.contains(toElement.id))).toList();
   }
 }

@@ -53,14 +53,36 @@ class MovieListItem extends StatelessWidget {
                       color: Colors.grey[600],
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  Text(
-                    'Release Date: ${movie.releaseDate}',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey[500],
-                    ),
-                  ),
+                  const SizedBox(height: 10),                  
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        movie.releaseDate,
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey[500],
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          const Icon(
+                            Icons.star,
+                            color: Colors.amber,
+                            size: 16,
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            '${movie.voteAverage.toStringAsFixed(1)}/10',
+                            style: const TextStyle(
+                              fontSize: 14,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  )
                 ],
               ),
             ),
