@@ -1,5 +1,6 @@
 import 'package:flutter_movies/core/data/database/fields/favorite_fields.dart';
 import 'package:flutter_movies/core/data/database/fields/movie_fields.dart';
+import 'package:flutter_movies/core/data/database/fields/now_playing_fields.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -23,8 +24,9 @@ class DatabaseHelper {
       onCreate: (db, version) {
         db.execute(createMoviesTable);
         db.execute(createFavoriteMoviesTable);
+        db.execute(createNowPlayingMoviesTable);
       },
-      version: 1,
+      version: 2,
     );
   }
 }

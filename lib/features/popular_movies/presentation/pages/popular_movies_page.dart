@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_movies/core/blocs/events/movie_event.dart';
 import 'package:flutter_movies/core/blocs/states/movie_state.dart';
 import 'package:flutter_movies/core/widgets/movie_list_item.dart';
+import 'package:flutter_movies/features/movie_detail/presentation/pages/movie_detail_page.dart';
 import 'package:flutter_movies/features/popular_movies/presentation/blocs/popular_movie_bloc.dart';
 import 'package:flutter_movies/l10n/app_localizations.dart';
 import 'package:get_it/get_it.dart';
@@ -46,12 +47,19 @@ class _PopularMoviesPageState extends StatelessWidget {
                 final movie = state.movies[index];
                 return ChangeNotifierProvider.value(
                   value: movie,
-                  child: MovieListItem(
-                    movie: movie,
-                    onFavoritePressed: () {
-                      BlocProvider.of<PopularMovieBloc>(context).add(ToggleFavorite(movieId: movie.id));
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) => DetailPage(movieId: movie.id)
+                      ));
                     },
-                  )
+                    child: MovieListItem(
+                      movie: movie,
+                      onFavoritePressed: () {
+                        BlocProvider.of<PopularMovieBloc>(context).add(ToggleFavorite(movieId: movie.id));
+                      },
+                    ),
+                  ),
                 );
               },
             );

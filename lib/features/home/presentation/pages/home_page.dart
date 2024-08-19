@@ -5,6 +5,9 @@ import 'package:flutter_movies/core/blocs/states/movie_state.dart';
 import 'package:flutter_movies/core/domain/entities/movie.dart';
 import 'package:flutter_movies/features/home/presentation/blocs/events/favorite_events.dart';
 import 'package:flutter_movies/features/home/presentation/blocs/home_movies_bloc.dart';
+import 'package:flutter_movies/features/movie_detail/blocs/get_movie_detail_bloc.dart';
+import 'package:flutter_movies/features/movie_detail/blocs/states/movie_detail_states.dart';
+import 'package:flutter_movies/features/movie_detail/presentation/pages/movie_detail_page.dart';
 import 'package:flutter_movies/l10n/app_localizations.dart';
 import 'package:get_it/get_it.dart';
 
@@ -60,8 +63,15 @@ class _PopularMoviesPageState extends StatelessWidget {
                     padding: const EdgeInsets.only(right: 20.0),
                     child: const Icon(Icons.delete, color: Colors.white), // Icono de eliminar
                   ),
-                  child: FavoriteMovieListItem(
-                    movie: movie,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) => DetailPage(movieId: movie.id)
+                      ));
+                    },
+                    child: FavoriteMovieListItem(
+                      movie: movie
+                    ),
                   ),
                 );
               },

@@ -4,6 +4,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_movies/core/di/injection.dart';
 import 'package:flutter_movies/features/home/di/injection.dart';
 import 'package:flutter_movies/features/home/presentation/pages/home_page.dart';
+import 'package:flutter_movies/features/movie_detail/di/injection.dart';
+import 'package:flutter_movies/features/movie_detail/presentation/pages/movie_detail_page.dart';
 import 'package:flutter_movies/features/now_playing/di/injection.dart';
 import 'package:flutter_movies/features/settings/di/injection.dart';
 import 'package:flutter_movies/features/settings/presentation/blocs/notifier/language_notifier.dart';
@@ -30,6 +32,7 @@ void main() async {
   setupPopularMoviesInjection();
   setupNowPopularMoviesInjection();
   setupSettingsInjection();
+  setupMovieDetailInjection();
   runApp(MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => GetIt.I<ThemeNotifier>()),
@@ -94,10 +97,11 @@ class _MainPageState extends State<MainPage> {
   int _currentIndex = 0;
 
   final List<Widget> _pages = [
-    HomePage(),
+    const HomePage(),
     const PopularMoviesPage(),
-    NowPlayingPage(),
-    SettingsPage(),
+    const NowPlayingPage(),
+    const SettingsPage(),
+    const DetailPage(movieId: 0)
   ];
 
   void _onItemTapped(int index) {

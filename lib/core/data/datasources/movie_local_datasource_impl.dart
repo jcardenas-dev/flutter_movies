@@ -41,4 +41,9 @@ class MovieLocalDatasourceImpl implements MovieLocalDatasource {
     return favoriteMovies;
   }
 
+  @override
+  Future<MovieModel> getMovieById(int id) {
+    return movieDao.getMovieById(id);
+  }
+
 }

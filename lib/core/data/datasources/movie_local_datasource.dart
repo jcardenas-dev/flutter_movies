@@ -6,4 +6,5 @@ abstract class MovieLocalDatasource {
     Future<void> deleteFavorite(int movieId);
     Future<List<int>> getFavoriteIds();
     Future<List<MovieModel>> getFavoriteMovies();
+    Future<MovieModel> getMovieById(int id);
 }
