@@ -37,12 +37,14 @@ The app also includes a basic settings feature that enables users to switch betw
   
 ## Screenshots
 
-<img src="screenshots/favorites.png" alt="Home Screen" width="200"/>
-<img src="screenshots/popular_favorites.png" alt="Popular Screen" width="200"/>
-<img src="screenshots/now_playing_favorites.png" alt="Now Playing Screen" width="200"/>
-<img src="screenshots/settings.png" alt="Settings Screen" width="200"/>
-<img src="screenshots/movie_detail.png" alt="Movie detail Screen" width="200"/>
-<img src="screenshots/dark_theme.png" alt="Dark theme Screen" width="200"/>
+<p>
+<img src="screenshots/favorites.png" alt="Home Screen" width="200" style="display: inline-block;"/>
+<img src="screenshots/popular_favorites.png" alt="Popular Screen" width="200" style="display: inline-block;"/>
+<img src="screenshots/now_playing_favorites.png" alt="Now Playing Screen" width="200" style="display: inline-block;"/>
+<img src="screenshots/settings.png" alt="Settings Screen" width="200" style="display: inline-block;"/>
+<img src="screenshots/movie_detail.png" alt="Movie detail Screen" width="200" style="display: inline-block;"/>
+<img src="screenshots/dark_theme.png" alt="Dark theme Screen" width="200" style="display: inline-block;"/>
+</p>
 
 ## Getting Started
 
