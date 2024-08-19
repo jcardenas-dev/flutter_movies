@@ -24,6 +24,8 @@ import 'package:flutter_movies/features/settings/domain/usecases/is_dark_usecase
 import 'package:flutter_movies/features/settings/presentation/usecases/get_language_usecase_impl.dart';
 import 'package:flutter_movies/features/settings/presentation/usecases/is_dark_usecase_impl.dart';
 import 'package:get_it/get_it.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 final sl = GetIt.instance;
 
@@ -33,12 +35,17 @@ void setup() async {
   String baseUrl = String.fromEnvironment('BASE_URL', defaultValue: dotenv.env['BASE_URL'] ?? '');
   
   // API Client
-  sl.registerLazySingleton(() => ApiClient(baseUrl: baseUrl, apiKey: apiKey));
+  sl.registerSingleton<http.Client>(http.Client());
+  sl.registerLazySingleton(() => ApiClient(client: sl(), baseUrl: baseUrl, apiKey: apiKey));
 
   // Database and Daos
   sl.registerLazySingleton(() => DatabaseHelper());
   sl.registerLazySingleton(() => MovieDao(databaseHelper: sl()));
   sl.registerLazySingleton(() => FavoriteDao(databaseHelper: sl()));
+
+  // SharedPreference
+  final sharedPreferences = await SharedPreferences.getInstance();
+  sl.registerSingleton<SharedPreferences>(sharedPreferences);
 
   // Data Source
   sl.registerLazySingleton<MovieRemoteDataSource>(
@@ -50,7 +57,7 @@ void setup() async {
   );
 
   sl.registerLazySingleton<SettingsLocalDatasource>(
-    () => SettingsLocalDatasourceImpl(),
+    () => SettingsLocalDatasourceImpl(prefs: sl()),
   );
 
   // Repository
