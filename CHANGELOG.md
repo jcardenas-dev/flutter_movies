@@ -19,10 +19,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Implemented UseCases for inserting and deleting favorite movies.
 - Updated the Home feature to display and manage favorite movies.
 - Added functionality to mark and unmark favorites in the "Now Playing" and "Popular" movie sections.
+- Added a new feature to visualize movie details.
+- Added `MovieDetailBloc` to handle state management for the movie detail view.
+- Implemented `GetMovieDetailUsecase` to interact with the repository.
+- Add unit tests for datasource, repository, and usecase.
 
 ### Changed
 - Updated `PopularMoviesBloc` and `NowPlayingMoviesBloc` to handle the favorite state and allow deletion from movie lists.
 - Modified movie list views to reflect changes in the favorite status reactively.
+- Updated `LocalDataSource` to support fetching movie details.
+- Modified `MovieRepository` to include a method for retrieving movie details.
+- Updated the page to include a new detail screen.
 
 ### Fixed
 - Resolved the issue with updating lists when adding or removing favorites to ensure visual state consistency with the data.
