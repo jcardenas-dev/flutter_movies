@@ -8,4 +8,5 @@ abstract class MovieRepository {
   Future<List<Movie>> getFavorites(MovieParams params);
   Future<void> insertFavorite(int movieId);
   Future<void> deleteFavorite(int movieId);
+  Future<Movie> getMovieById(int movieId);
 }

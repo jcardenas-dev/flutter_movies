@@ -101,7 +101,11 @@ class MovieModel {
       backdropPath: backdropPath ?? '', 
       voteAverage: voteAverage, 
       releaseDate: releaseDate,
-      isFavorite: isFavorite
+      isFavorite: isFavorite,
+      popularity: popularity,
+      voteCount: voteCount,
+      genreIds: genreIds,
+      originalLanguage: originalLanguage
     );
   }
 

@@ -39,4 +39,16 @@ class MovieDao {
       return MovieModel.fromMap(maps[i]);
     });
   }
+
+  Future<MovieModel> getMovieById(int id) async {
+    final database = await databaseHelper.database;
+
+    final List<Map<String, dynamic>> maps = await database.query(
+      MovieFields.tableName,
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+
+    return MovieModel.fromMap(maps.first);
+  }
 }

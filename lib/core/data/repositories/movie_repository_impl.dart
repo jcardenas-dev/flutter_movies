@@ -64,4 +64,10 @@ class MovieRepositoryImpl implements MovieRepository {
   Future<void> deleteFavorite(int movieId) async {
     await localDatasource.deleteFavorite(movieId);
   }
+
+  @override
+  Future<Movie> getMovieById(int movieId) async {
+    final result = await localDatasource.getMovieById(movieId);
+    return result.toDomain(false);
+  }
 }
