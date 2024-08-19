@@ -16,5 +16,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Implemented BLoC and use case for now playing movies.
 - Updated API client to support fetching now playing movies.
 - Updated UI to display now playing movies.
+- Implemented UseCases for inserting and deleting favorite movies.
+- Updated the Home feature to display and manage favorite movies.
+- Added functionality to mark and unmark favorites in the "Now Playing" and "Popular" movie sections.
 
 ### Changed
+- Updated `PopularMoviesBloc` and `NowPlayingMoviesBloc` to handle the favorite state and allow deletion from movie lists.
+- Modified movie list views to reflect changes in the favorite status reactively.
+
+### Fixed
+- Resolved the issue with updating lists when adding or removing favorites to ensure visual state consistency with the data.
+- Fixed fallback image handling in movie detail views to avoid errors in image loading.
+
