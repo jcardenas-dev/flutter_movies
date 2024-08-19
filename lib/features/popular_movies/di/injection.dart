@@ -9,5 +9,9 @@ void setupPopularMoviesInjection() {
     () => GetPopularMoviesUseCaseImpl(repository: sl()),
   );
 
-  sl.registerFactory(() => PopularMovieBloc(getPopularMoviesUseCase: sl()));
+  sl.registerFactory(() => PopularMovieBloc(
+    getPopularMoviesUseCase: sl(),
+    insertFavoriteMovieUsecase: sl(),
+    deleteFavoriteMovieUsecase: sl()
+  ));
 }

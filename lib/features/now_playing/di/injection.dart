@@ -9,5 +9,9 @@ void setupNowPopularMoviesInjection() {
     () => GetNowPlayingMoviesUsecaseImpl(repository: sl()),
   );
 
-  sl.registerFactory(() => NowPlayingMoviesBloc(getNowPlayingMoviesUsecase: sl()));
+  sl.registerFactory(() => NowPlayingMoviesBloc(
+    getNowPlayingMoviesUsecase: sl(),
+    insertFavoriteMovieUsecase: sl(),
+    deleteFavoriteMovieUsecase: sl()
+  ));
 }

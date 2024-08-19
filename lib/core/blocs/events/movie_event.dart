@@ -6,3 +6,9 @@ abstract class MovieEvent extends Equatable {
 }
 
 class LoadMovies extends MovieEvent {}
+
+class ToggleFavorite extends MovieEvent {
+
+  final int movieId;
+  ToggleFavorite({required this.movieId});
+}
