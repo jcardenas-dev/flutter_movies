@@ -77,8 +77,8 @@ flutter run
 ```
 - To build the app for Android or iOS:
 ```bash
-flutter build apk --dart-define=API_KEY='your_actual_api_key'
-flutter build ios --dart-define=API_KEY='your_actual_api_key'
+flutter build apk --dart-define=API_KEY='your_actual_api_key' --dart-define=BASE_URL=https://api.themoviedb.org
+flutter build ios --dart-define=API_KEY='your_actual_api_key' --dart-define=BASE_URL=https://api.themoviedb.org
 ```
 ## Architecture
 This project uses [architecture name, e.g., Clean Architecture, MVVM, etc.] with the following structure:
