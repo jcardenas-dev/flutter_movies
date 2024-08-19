@@ -21,6 +21,10 @@ class MovieLoaded extends MovieState {
   List<Object> get props => [movies];
 }
 
+class MovieFavoriteDeleted extends MovieState {}
+
+class MovieFavoriteInserted extends MovieState {}
+
 class MovieError extends MovieState {
   final String message;
 

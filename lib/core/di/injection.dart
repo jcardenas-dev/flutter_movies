@@ -8,7 +8,11 @@ import 'package:flutter_movies/core/data/datasources/movie_remote_datasource.dar
 import 'package:flutter_movies/core/data/datasources/movie_remote_datasource_impl.dart';
 import 'package:flutter_movies/core/data/repositories/movie_repository_impl.dart';
 import 'package:flutter_movies/core/domain/repositories/movie_repository.dart';
+import 'package:flutter_movies/core/domain/usecases/delete_favorite_movie_usecase.dart';
+import 'package:flutter_movies/core/domain/usecases/insert_favorite_movie_usecase.dart';
 import 'package:flutter_movies/core/network/api_client.dart';
+import 'package:flutter_movies/core/presentation/usecases/delete_favorite_movie_usecase_impl.dart';
+import 'package:flutter_movies/core/presentation/usecases/insert_favorite_movie_usecase_impl.dart';
 import 'package:get_it/get_it.dart';
 
 final sl = GetIt.instance;
@@ -38,5 +42,14 @@ void setup() async {
   // Repository
   sl.registerLazySingleton<MovieRepository>(
     () => MovieRepositoryImpl(remoteDataSource: sl(), localDatasource: sl()),
+  );
+
+  // Usecases
+  sl.registerLazySingleton<InsertFavoriteMovieUsecase>(
+    () => InsertFavoriteMovieUsecaseImpl(repository: sl()),
+  );
+
+  sl.registerLazySingleton<DeleteFavoriteMovieUsecase>(
+    () => DeleteFavoriteMovieUsecaseImpl(repository: sl()),
   );
 }

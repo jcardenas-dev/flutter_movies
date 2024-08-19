@@ -5,6 +5,7 @@ import 'package:flutter_movies/core/blocs/states/movie_state.dart';
 import 'package:flutter_movies/core/widgets/movie_list_item.dart';
 import 'package:flutter_movies/features/now_playing/presentation/blocs/now_playing_movies_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:provider/provider.dart';
 
 
 class NowPlayingPage extends StatelessWidget {
@@ -17,7 +18,6 @@ class NowPlayingPage extends StatelessWidget {
       child: _PopularMoviesPageState(),
     );
   }
-  
 }
 
 class _PopularMoviesPageState extends StatelessWidget {
@@ -40,7 +40,15 @@ class _PopularMoviesPageState extends StatelessWidget {
               itemCount: state.movies.length,
               itemBuilder: (context, index) {
                 final movie = state.movies[index];
-                return MovieListItem(movie: movie);
+                return ChangeNotifierProvider.value(
+                  value: movie,
+                  child: MovieListItem(
+                    movie: movie,
+                    onFavoritePressed: () {
+                      BlocProvider.of<NowPlayingMoviesBloc>(context).add(ToggleFavorite(movieId: movie.id));
+                    },
+                  )
+                );
               },
             );
           } else if (state is MovieError) {

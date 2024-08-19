@@ -1,4 +1,3 @@
-import 'package:flutter_movies/main.dart';
 
 class MovieParamsModel {
   final bool includeAdult;

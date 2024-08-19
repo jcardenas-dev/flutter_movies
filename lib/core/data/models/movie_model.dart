@@ -1,5 +1,6 @@
 import 'package:flutter_movies/core/data/database/fields/movie_fields.dart';
 import 'package:flutter_movies/core/domain/entities/movie.dart';
+import 'package:flutter_movies/main.dart';
 
 class MovieModel {
   final bool adult;
@@ -10,7 +11,7 @@ class MovieModel {
   final String originalTitle;
   final String overview;
   final double popularity;
-  final String posterPath;
+  final String? posterPath;
   final String releaseDate;
   final String title;
   final bool video;
@@ -54,10 +55,11 @@ class MovieModel {
   }
 
   factory MovieModel.fromMap(Map<String, dynamic> map) {
+    logger.d(map);
     return MovieModel(
       adult: map[MovieFields.adult] == 1, // Asumiendo que 1 es true y 0 es false
       backdropPath: map[MovieFields.backdropPath],
-      genreIds: List<int>.from(map[MovieFields.genreIds] ?? []),
+      genreIds: map[MovieFields.genreIds].toString().split(',').map((id) => int.tryParse(id) ?? 0).toList(),
       id: map[MovieFields.id],
       originalLanguage: map[MovieFields.originalLanguage],
       originalTitle: map[MovieFields.originalTitle],

@@ -1,4 +1,6 @@
-class Movie {
+import 'package:flutter/material.dart';
+
+class Movie with ChangeNotifier {
   final int id;
   final String title;
   final String overview;
@@ -6,7 +8,7 @@ class Movie {
   final String backdropPath;
   final double voteAverage;
   final String releaseDate;
-  final bool isFavorite;
+  bool isFavorite;
 
   Movie({
     required this.id,
@@ -18,4 +20,9 @@ class Movie {
     required this.releaseDate,
     required this.isFavorite
   });
+
+  void toggleFavorite() {
+    isFavorite = !isFavorite;
+    notifyListeners();
+  }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter_movies/core/data/database/database_helper.dart';
 import 'package:flutter_movies/core/data/database/fields/favorite_fields.dart';
+import 'package:flutter_movies/main.dart';
 import 'package:sqflite/sqflite.dart';
 
 class FavoriteDao {
@@ -31,7 +32,8 @@ class FavoriteDao {
       FavoriteFields.tableName
     );
 
-    final List<int> movieIds = favoriteIds.map((row) => row['movieId'] as int).toList();
+    logger.d(favoriteIds);
+    final List<int> movieIds = favoriteIds.map((row) => row[FavoriteFields.id] as int).toList();
     return movieIds;
   }
 
