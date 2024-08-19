@@ -6,8 +6,9 @@ import 'dart:io';
 class ApiClient {
   final String baseUrl;
   final String apiKey;
+  final http.Client client;
 
-  ApiClient({required this.baseUrl, required this.apiKey});
+  ApiClient({required this.client, required this.baseUrl, required this.apiKey});
 
   Future<http.Response> get(String endpoint, Map<String, String> params) async {
     Uri uri = Uri.parse(baseUrl);
@@ -17,17 +18,13 @@ class ApiClient {
       path: endpoint,
       queryParameters: params,
     );
-    logger.d("parameters: $params");
-    logger.i("url: $url");
     try {
       final headers = {
         'Authorization': 'Bearer $apiKey',
         'Accept': 'application/json',
-        // Agrega más encabezados si es necesario
       };
-      logger.d(url);
-
-      final response = await http.get(url, headers: headers);
+      
+      final response = await client.get(url, headers: headers);
 
       // Manejo de errores comunes
       switch (response.statusCode) {
@@ -50,7 +47,7 @@ class ApiClient {
     } on SocketException {
       throw const ConnectionFailure();
     } catch (e) {
-      throw UnknownErrorFailure(message: e.toString());
+      rethrow;
     }
   }
 }

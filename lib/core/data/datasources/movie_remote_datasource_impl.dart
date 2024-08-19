@@ -20,10 +20,8 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
       final movieResponse = MovieResponseModel.fromJson(data);
       return Right(movieResponse);
     } on MovieFailure catch (e) {
-      logger.e(e);
       return Left(e);
     } catch (e) {
-      logger.e(e);
       return Left(UnknownErrorFailure(message: e.toString()));
     }
   }

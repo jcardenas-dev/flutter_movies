@@ -23,7 +23,6 @@ class PlayingMoviesParams {
 
   String getReleaseTypes() {
       String result = releaseTypes.map((type) => type.value).join('|');
-      logger.d('Result: $result');
       return result;
   }
 

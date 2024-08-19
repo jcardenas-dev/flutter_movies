@@ -1,7 +1,6 @@
 import 'package:flutter_movies/core/data/database/database_helper.dart';
 import 'package:flutter_movies/core/data/database/fields/movie_fields.dart';
 import 'package:flutter_movies/core/data/models/movie_model.dart';
-import 'package:flutter_movies/main.dart';
 import 'package:sqflite/sqlite_api.dart';
 
 class MovieDao {
