@@ -25,6 +25,7 @@ class ApiClient {
         'Accept': 'application/json',
         // Agrega más encabezados si es necesario
       };
+      logger.d(url);
 
       final response = await http.get(url, headers: headers);
 

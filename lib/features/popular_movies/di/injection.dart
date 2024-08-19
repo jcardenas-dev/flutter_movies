@@ -6,7 +6,7 @@ import 'package:flutter_movies/features/popular_movies/presentation/usecases/get
 void setupPopularMoviesInjection() {
   // Registrar Use Case
   sl.registerLazySingleton<GetPopularMoviesUseCase>(
-    () => GetPopularMoviesUseCaseImpl(repository: sl()),
+    () => GetPopularMoviesUseCaseImpl(repository: sl(), settingsRepository: sl()),
   );
 
   sl.registerFactory(() => PopularMovieBloc(

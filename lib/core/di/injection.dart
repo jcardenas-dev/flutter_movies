@@ -6,13 +6,23 @@ import 'package:flutter_movies/core/data/datasources/movie_local_datasource.dart
 import 'package:flutter_movies/core/data/datasources/movie_local_datasource_impl.dart';
 import 'package:flutter_movies/core/data/datasources/movie_remote_datasource.dart';
 import 'package:flutter_movies/core/data/datasources/movie_remote_datasource_impl.dart';
+import 'package:flutter_movies/core/data/datasources/settings_local_datasource.dart';
+import 'package:flutter_movies/core/data/datasources/settings_local_datasource_impl.dart';
 import 'package:flutter_movies/core/data/repositories/movie_repository_impl.dart';
+import 'package:flutter_movies/core/data/repositories/settings_repository_impl.dart';
 import 'package:flutter_movies/core/domain/repositories/movie_repository.dart';
+import 'package:flutter_movies/core/domain/repositories/settings_repository.dart';
 import 'package:flutter_movies/core/domain/usecases/delete_favorite_movie_usecase.dart';
 import 'package:flutter_movies/core/domain/usecases/insert_favorite_movie_usecase.dart';
 import 'package:flutter_movies/core/network/api_client.dart';
 import 'package:flutter_movies/core/presentation/usecases/delete_favorite_movie_usecase_impl.dart';
 import 'package:flutter_movies/core/presentation/usecases/insert_favorite_movie_usecase_impl.dart';
+import 'package:flutter_movies/features/settings/domain/usecases/get_language_usecase.dart';
+import 'package:flutter_movies/features/settings/presentation/blocs/notifier/language_notifier.dart';
+import 'package:flutter_movies/features/settings/presentation/blocs/notifier/theme_notifier.dart';
+import 'package:flutter_movies/features/settings/domain/usecases/is_dark_usecase.dart';
+import 'package:flutter_movies/features/settings/presentation/usecases/get_language_usecase_impl.dart';
+import 'package:flutter_movies/features/settings/presentation/usecases/is_dark_usecase_impl.dart';
 import 'package:get_it/get_it.dart';
 
 final sl = GetIt.instance;
@@ -37,11 +47,19 @@ void setup() async {
 
   sl.registerLazySingleton<MovieLocalDatasource>(
     () => MovieLocalDatasourceImpl(movieDao: sl(), favoriteDao: sl()),
-  );  
+  );
+
+  sl.registerLazySingleton<SettingsLocalDatasource>(
+    () => SettingsLocalDatasourceImpl(),
+  );
 
   // Repository
   sl.registerLazySingleton<MovieRepository>(
     () => MovieRepositoryImpl(remoteDataSource: sl(), localDatasource: sl()),
+  );
+
+  sl.registerLazySingleton<SettingsRepository>(
+    () => SettingsRepositoryImpl(settingsLocalDatasource: sl()),
   );
 
   // Usecases
@@ -52,4 +70,16 @@ void setup() async {
   sl.registerLazySingleton<DeleteFavoriteMovieUsecase>(
     () => DeleteFavoriteMovieUsecaseImpl(repository: sl()),
   );
+
+  sl.registerLazySingleton<IsDarkUsecase>(
+    () => IsDarkUsecaseImpl(repository: sl()),
+  );
+
+  sl.registerLazySingleton<GetLanguageUsecase>(
+    () => GetLanguageUsecaseImpl(repository: sl()),
+  );
+
+  // Notifiers
+  sl.registerLazySingleton(() => ThemeNotifier(isDarkUsecase: sl()));
+  sl.registerLazySingleton(() => LanguageNotifier(getLanguageUsecase: sl()));
 }

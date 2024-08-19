@@ -19,6 +19,9 @@ dependencies:
   logger: ^2.4.0
   provider: ^6.1.2
   sqflite: ^2.3.3+1
+  flutter_localizations:
+    sdk: flutter
+  shared_preferences: ^2.3.2
 
 dev_dependencies:
   flutter_test:
@@ -26,6 +29,12 @@ dev_dependencies:
   flutter_lints: ^4.0.0
 
 flutter:
+  generate: true
   uses-material-design: true
   assets:
     - .env
+    - lib/l10n/en.json
+    - lib/l10n/es.json
+
+flutter_gen:
+  output: lib/l10n

@@ -6,7 +6,7 @@ import 'package:flutter_movies/features/now_playing/presentation/usecases/get_no
 void setupNowPopularMoviesInjection() {
   // Registrar Use Case
   sl.registerLazySingleton<GetNowPlayingMoviesUsecase>(
-    () => GetNowPlayingMoviesUsecaseImpl(repository: sl()),
+    () => GetNowPlayingMoviesUsecaseImpl(repository: sl(), settingsRepository: sl()),
   );
 
   sl.registerFactory(() => NowPlayingMoviesBloc(
