@@ -1,0 +1,21 @@
+{
+    "bottomBarHomeTitle": "Favoritos",
+    "bottomBarPopularTitle": "Popular",
+    "bottomBarNowPlayingTitle": "Reproduciendo",
+    "bottomBarSettingsTitle": "Configuraciones",
+    "navBarHomeTitle": "Peliculas favoritas",
+    "navBarPopularTitle": "Peliculas populares",
+    "navBarNowPlayingTitle": "Peliculas reproduciendo ahora",
+    "navBarSettingsTitle": "Configuraciones",
+    "emptyFavoritesMessage": "No se encontraron películas.\nAjuste el icono de corazón para añadir/eliminar películas a favoritos.",
+    "noMoviesFoundMessage": "No se encontraron películas.",
+    "deleteFavoriteMessage": "eliminado",
+    "themeLabel": "Tema",
+    "optionsTheme": "Modo Claro/Oscuro",
+    "lightThemeLabel": "Claro",
+    "darkThemeLabel": "Oscuro",
+    "languageLabel": "Idioma",
+    "selectLanguageLabel": "Selecciona un idioma",
+    "englishLabel": "Ingles",
+    "spanishLabel": "Español"
+}

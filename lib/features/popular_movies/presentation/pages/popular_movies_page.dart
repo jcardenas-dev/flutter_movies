@@ -4,6 +4,7 @@ import 'package:flutter_movies/core/blocs/events/movie_event.dart';
 import 'package:flutter_movies/core/blocs/states/movie_state.dart';
 import 'package:flutter_movies/core/widgets/movie_list_item.dart';
 import 'package:flutter_movies/features/popular_movies/presentation/blocs/popular_movie_bloc.dart';
+import 'package:flutter_movies/l10n/app_localizations.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
@@ -25,13 +26,15 @@ class _PopularMoviesPageState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
+
     // Disparar el evento LoadMovies cuando el widget se construya
     WidgetsBinding.instance.addPostFrameCallback((_) {
       BlocProvider.of<PopularMovieBloc>(context).add(LoadMovies());
     });
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Popular Movies')),
+      appBar: AppBar(title: Text(localizations.translate('navBarPopularTitle'))),
       body: BlocBuilder<PopularMovieBloc, MovieState>(
         builder: (context, state) {
           if (state is MovieLoading) {
@@ -55,7 +58,7 @@ class _PopularMoviesPageState extends StatelessWidget {
           } else if (state is MovieError) {
             return Center(child: Text(state.message));
           }
-          return const Center(child: Text('No movies found.'));
+          return Center(child: Text(localizations.translate('noMoviesFoundMessage')));
         },
       )
     );

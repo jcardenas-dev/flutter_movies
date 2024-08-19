@@ -13,7 +13,6 @@ class MovieDao {
     final database = await databaseHelper.database;
     for (var movie in movies) {
       final map = movie.toMap();
-      logger.d(map);
       await database.insert(
         MovieFields.tableName,
         map,
@@ -24,7 +23,6 @@ class MovieDao {
 
   Future<List<MovieModel>> getMoviesByIds(List<int> movieIds) async {
     final database = await databaseHelper.database;
-    logger.d(movieIds.join(','));
 
     if (movieIds.isEmpty) {
       return [];
@@ -38,7 +36,6 @@ class MovieDao {
       whereArgs: movieIds,
     );
 
-    logger.d(maps);
     return List.generate(maps.length, (i) {
       return MovieModel.fromMap(maps[i]);
     });

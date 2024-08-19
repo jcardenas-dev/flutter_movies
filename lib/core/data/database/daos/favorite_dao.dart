@@ -32,7 +32,6 @@ class FavoriteDao {
       FavoriteFields.tableName
     );
 
-    logger.d(favoriteIds);
     final List<int> movieIds = favoriteIds.map((row) => row[FavoriteFields.id] as int).toList();
     return movieIds;
   }

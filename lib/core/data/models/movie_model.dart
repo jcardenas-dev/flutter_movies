@@ -55,7 +55,6 @@ class MovieModel {
   }
 
   factory MovieModel.fromMap(Map<String, dynamic> map) {
-    logger.d(map);
     return MovieModel(
       adult: map[MovieFields.adult] == 1, // Asumiendo que 1 es true y 0 es false
       backdropPath: map[MovieFields.backdropPath],

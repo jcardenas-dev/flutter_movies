@@ -1,0 +1,21 @@
+{
+    "bottomBarHomeTitle": "Favorites",
+    "bottomBarPopularTitle": "Popular",
+    "bottomBarNowPlayingTitle": "Playing",
+    "bottomBarSettingsTitle": "Settings",
+    "navBarHomeTitle": "Favorite movies",
+    "navBarPopularTitle": "Popular movies",
+    "navBarNowPlayingTitle": "Now playing movies",
+    "navBarSettingsTitle": "Settings",
+    "emptyFavoritesMessage": "No movies found.\nTap the heart icon to add/remove movies to/from favorites.",
+    "noMoviesFoundMessage": "No movies found.",
+    "deleteFavoriteMessage": "deleted",
+    "themeLabel": "Theme",
+    "optionsTheme": "Light/Dark Mode",
+    "lightThemeLabel": "Light",
+    "darkThemeLabel": "Dark",
+    "languageLabel": "Language",
+    "selectLanguageLabel": "Select App Language",
+    "englishLabel": "English",
+    "spanishLabel": "Spanish"
+}

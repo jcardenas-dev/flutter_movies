@@ -5,6 +5,7 @@ import 'package:flutter_movies/core/blocs/states/movie_state.dart';
 import 'package:flutter_movies/core/domain/entities/movie.dart';
 import 'package:flutter_movies/features/home/presentation/blocs/events/favorite_events.dart';
 import 'package:flutter_movies/features/home/presentation/blocs/home_movies_bloc.dart';
+import 'package:flutter_movies/l10n/app_localizations.dart';
 import 'package:get_it/get_it.dart';
 
 class HomePage extends StatelessWidget {
@@ -23,13 +24,15 @@ class _PopularMoviesPageState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
+
     // Disparar el evento LoadMovies cuando el widget se construya
     WidgetsBinding.instance.addPostFrameCallback((_) {
       BlocProvider.of<HomeMoviesBloc>(context).add(LoadMovies());
     });
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Favorite movies')),
+      appBar: AppBar(title: Text(localizations.translate('navBarHomeTitle'))),
       body: BlocBuilder<HomeMoviesBloc, MovieState>(
         builder: (context, state) {
           if (state is MovieLoading) {
@@ -48,7 +51,7 @@ class _PopularMoviesPageState extends StatelessWidget {
 
                     // Mostrar un mensaje de confirmación
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('${movie.title} eliminado')),
+                      SnackBar(content: Text('${movie.title} ${localizations.translate('deleteFavoriteMessage')}')),
                     );
                   },
                   background: Container(
@@ -64,20 +67,20 @@ class _PopularMoviesPageState extends StatelessWidget {
               },
             );
           }
-          return const Center(
+          return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
+                const Icon(
                   Icons.favorite_border,
                   size: 50,
                   color: Colors.grey,
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 Text(
-                  'No movies found.\nTap the heart icon to add/remove movies to/from favorites.',
+                  localizations.translate('emptyFavoritesMessage'),
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 16),
+                  style: const TextStyle(fontSize: 16),
                 ),
               ],
             ),
@@ -116,6 +119,18 @@ class FavoriteMovieListItem extends StatelessWidget {
                 height: 100,
                 width: 80,
                 fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                    return Container(
+                      height: 100,
+                      width: 80,
+                      color: Colors.grey[300], // Color de fondo para el ícono
+                      child: const Icon(
+                        Icons.broken_image, // Ícono de imagen rota
+                        color: Colors.grey,
+                        size: 48,
+                      ),
+                    );
+                  },
               ),
             ),
             const SizedBox(width: 10),
@@ -163,7 +178,6 @@ class FavoriteMovieListItem extends StatelessWidget {
                             '${movie.voteAverage.toStringAsFixed(1)}/10',
                             style: const TextStyle(
                               fontSize: 14,
-                              color: Colors.black,
                             ),
                           ),
                         ],
