@@ -81,30 +81,13 @@ flutter build apk --dart-define=API_KEY='your_actual_api_key' --dart-define=BASE
 flutter build ios --dart-define=API_KEY='your_actual_api_key' --dart-define=BASE_URL=https://api.themoviedb.org
 ```
 ## Architecture
-This project uses [architecture name, e.g., Clean Architecture, MVVM, etc.] with the following structure:
+This project is designed following the principles of Clean Architecture, ensuring separation of concerns, scalability, and maintainability. The main architectural components include:
 
--   **Core**
--   **Features**: 
-	- **Home**:
-		- Data
-		- Domain
-		- Presentation
-	- **Populares**:
-		- Data
-		- Domain
-		- Presentation
-	- **Now Playing**:
-		- Data
-		- Domain
-		- Presentation
-	- **Settings**:
-		- Data
-		- Domain
-		- Presentation
-	- **Detail**:
-		- Data
-		- Domain
-		- Presentation
+- BLoC (Business Logic Component)
+- Repository Pattern
+- Dependency Injection
+
+<img src="screenshots/arquitectura.png" alt="Arquitectura Screen" width="600"/>
 
 ## Testing
 This project includes unit, widget, and integration tests. To run the tests:
